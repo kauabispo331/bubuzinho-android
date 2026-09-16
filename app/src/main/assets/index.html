@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bubuzinho — bichinho virtual</title>
+<style>
+:root{--bg:#fff7ed;--ink:#33251e;--card:#fff;--pink:#ff7a9e;--orange:#ff9d4d;--green:#60c88a;--blue:#62b7e8;--purple:#a184e8;--shadow:0 14px 35px #6d3d2518}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:var(--ink);background:radial-gradient(circle at 15% 5%,#ffe2ed 0 13%,transparent 28%),radial-gradient(circle at 95% 20%,#ffe9c9 0 14%,transparent 31%),var(--bg);min-height:100vh;display:flex;justify-content:center;padding:18px}
+.app{width:min(540px,100%)}.top{display:flex;align-items:center;justify-content:space-between;margin:4px 4px 14px}.brand{display:flex;gap:10px;align-items:center}.logo{font-size:35px;filter:drop-shadow(0 4px 0 #ffffff)}h1{font-size:23px;margin:0;letter-spacing:-.5px}.sub{font-size:12px;color:#8c6c5d}.pill{background:#fff;border:0;border-radius:99px;padding:9px 12px;color:#8c6c5d;box-shadow:var(--shadow);font-weight:700;cursor:pointer}
+.card{background:#fff;border:1px solid #fff;box-shadow:var(--shadow);border-radius:26px;padding:16px;margin-bottom:14px}.room{height:295px;position:relative;overflow:hidden;background:linear-gradient(#bcecff 0 67%,#b1e99f 67%);border-radius:21px;padding:0}.sun{position:absolute;right:25px;top:22px;width:48px;height:48px;border-radius:50%;background:#ffd56c;box-shadow:0 0 0 10px #ffe69b55}.cloud{position:absolute;color:#fff;font-size:34px;opacity:.8}.c1{left:20px;top:28px}.c2{right:90px;top:92px;font-size:27px}.hill{position:absolute;bottom:59px;width:210px;height:100px;background:#94d77f;border-radius:50% 50% 0 0}.h1{left:-45px}.h2{right:-60px;background:#83ce76}.floor{position:absolute;bottom:0;height:62px;width:100%;background:repeating-linear-gradient(90deg,#c58b54 0 48px,#b97d4b 48px 51px),#c58b54;border-top:6px solid #b5794b}.pet{position:absolute;left:50%;bottom:51px;transform:translateX(-50%);width:142px;height:132px;border-radius:48% 48% 44% 44%;background:#8f63dc;box-shadow:inset -10px -11px 0 #7950c7,0 10px 0 #633aa750;display:flex;justify-content:center}.pet:before,.pet:after{content:"";position:absolute;top:49px;width:15px;height:23px;border-radius:50%;background:#30223b}.pet:before{left:36px}.pet:after{right:36px}.mouth{position:absolute;top:80px;width:34px;height:17px;border-bottom:5px solid #30223b;border-radius:0 0 50% 50%}.cheek{position:absolute;top:76px;width:20px;height:9px;border-radius:50%;background:#ff92b4;opacity:.7}.leftcheek{left:17px}.rightcheek{right:17px}.hat{position:absolute;top:-22px;font-size:52px;line-height:1}.pet.sleeping:before,.pet.sleeping:after{height:5px;top:59px;border-radius:5px}.pet.sleeping .mouth{display:none}.pet.happy{animation:bounce .7s ease-in-out infinite alternate}@keyframes bounce{to{transform:translateX(-50%) translateY(-9px) rotate(2deg)}}.bubble{position:absolute;top:22px;left:50%;transform:translateX(-50%);background:#fff;padding:8px 13px;border-radius:15px;font-weight:800;font-size:13px;box-shadow:0 5px 0 #b67a4a33;white-space:nowrap}.bubble:after{content:"";position:absolute;bottom:-7px;left:50%;border:7px solid transparent;border-top-color:#fff;border-bottom:0}
+.name-row{display:flex;justify-content:space-between;align-items:center;margin:13px 3px 3px}.name{font-size:18px;font-weight:900}.level{font-size:12px;color:#8c6c5d;background:#fff2e5;padding:6px 9px;border-radius:99px;font-weight:800}.xp{height:7px;background:#f1e4d9;border-radius:9px;overflow:hidden}.xp i{display:block;height:100%;width:35%;background:linear-gradient(90deg,#ff9d4d,#ffcf64);border-radius:9px;transition:width .4s}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:11px}.stat{background:#fffaf6;border-radius:17px;padding:11px}.stat-head{display:flex;justify-content:space-between;font-size:13px;font-weight:800}.bar{height:9px;background:#eaded5;border-radius:8px;margin-top:8px;overflow:hidden}.bar i{display:block;height:100%;border-radius:8px;transition:width .35s}.hunger i{background:var(--orange)}.fun i{background:var(--pink)}.energy i{background:var(--blue)}.clean i{background:var(--green)}
+.actions{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.action{border:0;border-radius:17px;background:#fff7f2;min-height:76px;color:var(--ink);font-weight:800;cursor:pointer;transition:.15s;box-shadow:inset 0 -3px #f2dfd4}.action:hover{transform:translateY(-2px)}.action:active{transform:scale(.96)}.action b{display:block;font-size:25px;margin-bottom:4px}.action small{font-size:11px}.feed{background:#fff0db}.play{background:#ffe7ef}.sleep{background:#eaf5ff}.clean-btn{background:#e8faee}
+.note{display:flex;gap:9px;align-items:center;color:#856b5d;font-size:12px;line-height:1.35}.note strong{color:#60493d}.footer-actions{display:flex;gap:9px;margin-top:12px}.secondary{flex:1;border:0;border-radius:13px;padding:10px;background:#f8eee8;color:#725749;font-weight:750;cursor:pointer}.toast{position:fixed;left:50%;bottom:18px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#33251e;color:white;padding:11px 15px;border-radius:99px;font-size:13px;font-weight:800;transition:.25s;z-index:3}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:390px){body{padding:10px}.room{height:270px}.actions{gap:6px}.action{padding:5px 2px}.action small{font-size:10px}}
+</style>
+</head>
+<body>
+<main class="app">
+<header class="top"><div class="brand"><div class="logo">🟣</div><div><h1>Bubuzinho</h1><div class="sub">seu bichinho virtual</div></div></div><button class="pill" id="reset">↻ Reiniciar</button></header>
+<section class="card">
+<div class="room"><div class="sun"></div><div class="cloud c1">☁️</div><div class="cloud c2">☁️</div><div class="hill h1"></div><div class="hill h2"></div><div class="bubble" id="speech">Oi! Vamos brincar?</div><div class="pet" id="pet"><span class="cheek leftcheek"></span><span class="cheek rightcheek"></span><span class="mouth"></span><span class="hat" id="hat"></span></div><div class="floor"></div></div>
+<div class="name-row"><span class="name">Bubuzinho <span id="mood">😊</span></span><span class="level">Nível <span id="level">1</span></span></div><div class="xp"><i id="xp"></i></div>
+</section>
+<section class="card stats">
+<div class="stat"><div class="stat-head"><span>🍎 Fome</span><span id="hungerTxt">78%</span></div><div class="bar hunger"><i id="hunger"></i></div></div>
+<div class="stat"><div class="stat-head"><span>🎈 Diversão</span><span id="funTxt">72%</span></div><div class="bar fun"><i id="fun"></i></div></div>
+<div class="stat"><div class="stat-head"><span>⚡ Energia</span><span id="energyTxt">86%</span></div><div class="bar energy"><i id="energy"></i></div></div>
+<div class="stat"><div class="stat-head"><span>🫧 Limpeza</span><span id="cleanTxt">80%</span></div><div class="bar clean"><i id="clean"></i></div></div>
+</section>
+<section class="card"><div class="actions"><button class="action feed" data-action="feed"><b>🍎</b><small>Alimentar</small></button><button class="action play" data-action="play"><b>🎮</b><small>Brincar</small></button><button class="action sleep" data-action="sleep"><b>💤</b><small>Dormir</small></button><button class="action clean-btn" data-action="clean"><b>🫧</b><small>Limpar</small></button></div><div class="footer-actions"><button class="secondary" id="star">⭐ Caça às estrelas</button><button class="secondary" id="sound">🔊 Som: ligado</button></div></section>
+<section class="card note">💡 <span><strong>Dica:</strong> cuide dos quatro medidores. As ações ficam mais fortes quando o Bubuzinho está feliz!</span></section>
+</main><div class="toast" id="toast"></div>
+<script>
+const initial={hunger:78,fun:72,energy:86,clean:80,xp:35,level:1,sleeping:false,sound:true};
+let s={...initial,...JSON.parse(localStorage.getItem('bubuzinho')||'{}')};
+const $=id=>document.getElementById(id); const clamp=n=>Math.max(0,Math.min(100,n));
+function save(){localStorage.setItem('bubuzinho',JSON.stringify(s))}
+function render(){
+ ['hunger','fun','energy','clean'].forEach(k=>{$(k).style.width=s[k]+'%';$(k+'Txt').textContent=Math.round(s[k])+'%'});
+ $('level').textContent=s.level;$('xp').style.width=s.xp+'%';$('pet').classList.toggle('sleeping',s.sleeping);$('pet').classList.toggle('happy',!s.sleeping&&s.fun>80);$('hat').textContent=s.level>=5?'👑':s.level>=3?'🎩':'';
+ const avg=(s.hunger+s.fun+s.energy+s.clean)/4; $('mood').textContent=s.sleeping?'😴':avg>75?'🤩':avg>45?'😊':avg>25?'😟':'😵';
+}
+function toast(t){$('toast').textContent=t;$('toast').classList.add('show');clearTimeout(window.t);window.t=setTimeout(()=>$('toast').classList.remove('show'),1900)}
+function act(a){
+ if(a==='feed'){s.hunger=clamp(s.hunger+22);s.clean=clamp(s.clean-3);s.xp+=8;toast('Nhac nhac! Que delícia 🍎')}
+ if(a==='play'){if(s.energy<12){toast('O Bubuzinho está cansado 😴');return}s.fun=clamp(s.fun+22);s.energy=clamp(s.energy-12);s.hunger=clamp(s.hunger-5);s.xp+=10;toast('Foi muito divertido! 🎈')}
+ if(a==='clean'){s.clean=clamp(s.clean+27);s.fun=clamp(s.fun-2);s.xp+=6;toast('Cheirosinho e brilhando! 🫧')}
+ if(a==='sleep'){s.sleeping=!s.sleeping;toast(s.sleeping?'Zzz... bons sonhos! 💤':'Bom dia! ☀️')}
+ if(s.xp>=100){s.xp-=100;s.level++;toast('Subiu de nível! Nível '+s.level+' 🎉')}
+ save();render()
+}
+document.querySelectorAll('[data-action]').forEach(b=>b.addEventListener('click',()=>act(b.dataset.action)));
+$('reset').onclick=()=>{if(confirm('Recomeçar a aventura do Bubuzinho?')){s={...initial};save();render();toast('Uma nova aventura começou! ✨')}};
+$('sound').onclick=()=>{s.sound=!s.sound;$('sound').textContent=s.sound?'🔊 Som: ligado':'🔇 Som: desligado';save()};
+$('star').onclick=()=>{if(s.energy<20){toast('Precisa de mais energia para a caça!');return}let n=Math.floor(Math.random()*3)+1;s.energy=clamp(s.energy-20);s.fun=clamp(s.fun+12);s.xp+=n*5;toast('Você achou '+n+' estrela'+(n>1?'s':'')+'! ⭐');if(s.xp>=100){s.xp-=100;s.level++;toast('Subiu de nível! Nível '+s.level+' 🎉')}save();render()};
+setInterval(()=>{if(!s.sleeping){s.hunger=clamp(s.hunger-.7);s.clean=clamp(s.clean-.35);s.energy=clamp(s.energy-.2);s.fun=clamp(s.fun-.25)}else{s.energy=clamp(s.energy+1.8);s.hunger=clamp(s.hunger-.18)}save();render()},7000);render();
+</script>
+</body></html>
